@@ -2,6 +2,7 @@
 
 #Author:yangxiaoyan
 
+'''定义请求参数的变量'''
 class ExcelVariable:
     caseID = 0
     url = 2

@@ -18,7 +18,7 @@ class OperationJson:
 
     def getRequestData(self,row):
         '''获取请求参数'''
-        return json.dumps(
-            self.getReadJson()[self.excel.get_request_data(row=row)])
+        return json.dumps(self.getReadJson()[self.excel.get_request_data(row=row)])
+
 
 

@@ -1,7 +1,3 @@
-#coding:utf-8
-
-#Author:yangxiaoyan
-
 import os
 
 def data_dir(data = "data",fileName = None):

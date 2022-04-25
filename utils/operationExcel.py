@@ -37,11 +37,9 @@ class OperationExcel:
         '''获取期望的结果'''
         return self.get_row_cel(row,getExpect())
 
-    def getResult(self):
+    def getResult(self,row):
         '''获取实际的结果'''
         return self.get_row_cel(row,getResult())
-
-
 
 
 
