@@ -10,15 +10,15 @@ from utils.operationJson import OperationJson
 operationExcel = OperationExcel()
 
 # print(operationExcel.getUrl(2).split('/'))
-
-def checkHeader(row,f1=None,f2=None):
-    '''检测请求头'''
-    url = operationExcel.getUrl(row= row)
-    url = url.split('/')
-    if url[4] == 'positionAjax.json?needAddtionalResult=false':
-        return f1
-    elif url[5] =='byPosition.json':
-        return f2
+#
+# def checkHeader(row,f1=None,f2=None):
+#     '''检测请求头'''
+#     url = operationExcel.getUrl(row= row)
+#     url = url.split('/')
+#     if url[4] == 'positionAjax.json?needAddtionalResult=false':
+#         return f1
+#     elif url[5] =='byPosition.json':
+#         return f2
 
 
 class Method:
