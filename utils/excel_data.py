@@ -1,9 +1,5 @@
-#coding:utf-8
-
-#Author:yangxiaoyan
-
-'''定义请求参数的变量'''
 class ExcelVariable:
+    '''定义请求参数的变量'''
     caseID = 0
     url = 2
     request_data = 3

@@ -41,6 +41,40 @@ class OperationExcel:
         '''获取实际的结果'''
         return self.get_row_cel(row,getResult())
 
+    def writeResult(self,row,content):
+        # 将测试结果写入到文件中
+        col = getResult()
+        work = xlrd.open_workbook(data_dir("data","data.xls"))
+        old_content = copy(work)
+        ws = old_content.get_sheet(0)
+        ws.write(row,col,content)
+        old_content.save(data_dir("data","data.xls"))
+
+    def getSuccessResult(self):
+        #获取成功的测试用例
+        passCount = []
+        failCount = None
+        for i in range(1,self.get_rows()):
+            if self.getResult(i) == "pass":
+                passCount.append(i)
+        return int(len(passCount))
+
+    def getFailResult(self):
+        # 执行失败的测试用例
+        return int((self.get_rows()-1)-self.getSuccessResult())
+
+    def runPassRate(self):
+        # 测试通过率
+        rate = ''
+        if self.getFailResult() == 0:
+            rate = "100%"
+        elif self.getFailResult()!=0:
+            rate = str(int(self.getSuccessResult()/(self.get_rows()-1)*100))+'%'
+            return rate
+
+op = OperationExcel()
+print(op.runPassRate())
+
 
 
 
