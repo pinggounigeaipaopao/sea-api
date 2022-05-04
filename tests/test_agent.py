@@ -19,7 +19,6 @@ class agent(unittest.TestCase):
         self.excel = OperationExcel()
         self.json = OperationJson()
 
-
     def statusCode(self, r):
         self.assertEqual(r.status_code, 200)
         self.assertEqual(r.json()['errorcode'], 0)
@@ -70,7 +69,6 @@ class agent(unittest.TestCase):
         elif func == 'DEL':
             r = self.obj.delete(row=row, token=token, ID=sheetId, file=file)
         return r
-
 
     # 代理商平台 - 禁用歌曲列表
     def test_banSongs_01(self):
