@@ -1,4 +1,12 @@
 {
   "os_dc_key_001":{"sn": "F1N717P002774"},
-  "os_dc_key_002":{"type": "OSS","logstore_name": "overseas_stb_user_behavior_data"}
+  "os_dc_key_002":{"type": "OSS","logstore_name": "overseas_stb_user_behavior_data"},
+  "A-token_001": {"username":"system", "password":"123456"},
+  "A-songbook-service_002": {"song_name": "", "limit": 1, "page": 1, "singer_name": ""},
+  "A-songbook-service_003": {"title": "", "description": "", "big_picture": "", "small_picture": ""},
+  "A-songbook-service_004": {"title": "", "description": "", "big_picture": "", "small_picture": "", "active": ""},
+
+  "A-songbook-service_005": {"sheet_id": ""},
+  "A-songbook-service_006": {"sheet_id": "","page": "", "limit": "", "sheet_type": ""}
+
 }

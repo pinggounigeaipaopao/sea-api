@@ -1,25 +1,10 @@
-#coding:utf-8
-
-#Author:yangxiaoyan
-
 import requests
 from utils.excel_data import *
 from utils.operationExcel import OperationExcel
 from utils.operationJson import OperationJson
 
 operationExcel = OperationExcel()
-
-# print(operationExcel.getUrl(2).split('/'))
-#
-# def checkHeader(row,f1=None,f2=None):
-#     '''检测请求头'''
-#     url = operationExcel.getUrl(row= row)
-#     url = url.split('/')
-#     if url[4] == 'positionAjax.json?needAddtionalResult=false':
-#         return f1
-#     elif url[5] =='byPosition.json':
-#         return f2
-
+operationJson = OperationJson()
 
 class Method:
     def __init__(self):
@@ -27,53 +12,58 @@ class Method:
         self.excel = OperationExcel()
 
 # post请求：
-    def post(self,row):
+    def post(self, row, token=None, params=None, file=1):
         try:
             r = requests.post(
-                url = self.excel.getUrl(row=row),
-                data = self.operationJson.getRequestData(row = row),
-                # header = getHeadersValue(),
-                timeout = 6)
+                url=self.excel.getUrl(row=row, file=file),
+                data=params,
+                headers=getHeadersValue(token),
+                timeout=6)
+
             return r
         except Exception as e:
             raise RuntimeError(e)
 
-    # def post(self,row,data):
-    #     # 和deviceClient.py合起来使用
-    #     try:
-    #         r = requests.post(
-    #             url = self.excel.getUrl(row=row),
-    #             data = data,
-    #             # header = checkHeader(row=row,f1=getHeadersValue(),f2=getHeadersInfo()),
-    #             timeout = 6)
-    #         return r
-    #     except Exception as e:
-    #         raise RuntimeError('接口请求发生未知的错误')
+# get请求
+    def get(self, row, params=None, token=None, file=1):
+        url = self.excel.getUrl(row=row, file=file)
+        headers = getHeadersValue(token)
+        r = requests.get(url=url, headers=headers, params=params, timeout=6)
+        return r
 
-# get请求：
-    def get(self,row):
-        try:
-            r = requests.get(
-                url = self.excel.getUrl(row=row)
-            )
-            return r
-        except Exception as e:
-            raise RuntimeError(e)
+# put请求
+    def put(self, row, token=None, params=None, ID=None, file=1):
+        url = self.excel.getUrl(row=row, file=file)+'/'+ID
+        headers = getHeadersValue(token)
+        r = requests.put(url=url, headers=headers, params=params, timeout=6)
+        return r
 
-    # def get(self,url,params=None):
-    #     r = requests.get(url=url,params=params,headers=getHeadersValue(),timeout= 6)
-    #     return r
+# del 请求
+    def delete(self, row, token=None, ID=None, file=1):
+        url = self.excel.getUrl(row=row, file=file)+'/'+ID
+        headers = getHeadersValue(token)
+        r = requests.delete(url=url, headers=headers, timeout=6)
+        return r
 
 
 
+# 返回校验 返回码的校验
 class isContent:
     def __init__(self):
         self.excel = OperationExcel()
 
-    def isContent(self,row,str2):
+    def isContent(self, row, str2):
         flag = None
-        if self.excel.getExpect(row = row) in str2:
-            flag =  True
+        if self.excel.getExpect(row=row) in str2:
+            flag = True
         else:
             flag = False
         return flag
+
+    def isCheck(self, row=None, statusCodeList=None):
+        if 500 in statusCodeList:
+            self.excel.writeResult(row, 'fail')
+        else:
+            self.excel.writeResult(row, 'pass')
+
+

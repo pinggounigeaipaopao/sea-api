@@ -5,6 +5,7 @@ class ExcelVariable:
     request_data = 3
     expect = 4
     result = 5
+    function = 6
 
 '''定义列变量，用来给operationExcel获取列'''
 def getCaseID():
@@ -13,7 +14,7 @@ def getCaseID():
 def getUrl():
     return ExcelVariable.url
 
-def get_request_data():
+def getRequestData():
     return ExcelVariable.request_data
 
 def getExpect():
@@ -22,10 +23,24 @@ def getExpect():
 def getResult():
     return ExcelVariable.result
 
-def getHeadersValue():
+def getFunction():
+    return ExcelVariable.function
+
+def getHeadersValue(token=None):
     '''获取请求头'''
     headers = {
-
+        'Content-Type': 'application/json; charset=utf-8',
+        # 'Content-Length': '22',
+        # 'Connection': 'keep-alive',
+        # 'vary': 'Origin',
+        # 'x-frame-options': 'SAMEORIGIN',
+        # 'x-xss-protection':
+        #     '1; mode=block',
+        # 'x-content-type-options': 'nosniff',
+        # 'x-download-options': 'noopen',
+        # 'x-readtime': '21',
+        # 'x-envoy-upstream-service-time': '24',
+        'Authorization': token
     }
     return headers
 

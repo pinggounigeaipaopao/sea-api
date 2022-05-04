@@ -12,13 +12,13 @@ class OperationJson:
         self.excel = OperationExcel()
 
     def getReadJson(self):
-        with open(data_dir(fileName='requestData.json'),encoding='utf-8') as fp:
+        with open(data_dir(fileName='requestData.json'), encoding='utf-8') as fp:
                 data = json.load(fp)
                 return data
 
-    def getRequestData(self,row):
+    def getRequestData(self, row, file=1):
         '''获取请求参数'''
-        return json.dumps(self.getReadJson()[self.excel.get_request_data(row=row)])
+        return json.dumps(self.getReadJson()[self.excel.getRequestData(row=row, file=file)])
 
 
 
